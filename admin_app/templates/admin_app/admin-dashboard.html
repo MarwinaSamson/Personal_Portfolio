@@ -652,14 +652,14 @@
                     </div>
                     <div class="form-field">
                       <label>Full Name</label>
-                      <input id="profile-name" type="text" value="Marwina" />
+                      <input id="profile-name" type="text" value="{% if profile %}{{ profile.name }}{% endif %}" />
                     </div>
                     <div class="form-field">
                       <label>Email Address</label>
                       <input
                         id="profile-email"
                         type="email"
-                        value="marwina@example.com"
+                        value="{% if profile %}{{ profile.email }}{% endif %}"
                       />
                     </div>
                     <div class="form-field">
@@ -667,7 +667,7 @@
                       <input
                         id="profile-location"
                         type="text"
-                        value="Davao City, Philippines"
+                        value="{% if profile %}{{ profile.location }}{% endif %}"
                       />
                     </div>
                     <div class="form-field">
@@ -675,14 +675,12 @@
                       <input
                         id="profile-degree"
                         type="text"
-                        value="BS Information Technology — 4th Year"
+                        value="{% if profile %}{{ profile.degree }}{% endif %}"
                       />
                     </div>
                     <div class="form-field full">
                       <label>About / Bio</label>
-                      <textarea id="profile-about" style="min-height: 120px">
-I'm a 4th-year BS Information Technology student with a deep passion for building full-stack web applications. I love turning ideas into functional, elegant digital products.</textarea
-                      >
+                      <textarea id="profile-about" style="min-height: 120px">{% if profile %}{{ profile.about_p1 }}{% endif %}</textarea>
                     </div>
                   </div>
                   <div style="margin-top: 18px; display: flex; gap: 10px">
@@ -795,13 +793,11 @@ A passionate BS IT student specializing in full-stack web development. I build t
                     </div>
                     <div class="form-field">
                       <label>Typing Phrases (one per line)</label>
-                      <textarea style="min-height: 120px" id="typingPhrases">
-BS IT Student
+                      <textarea style="min-height: 120px" id="typingPhrases">{% if profile and profile.typing_phrases %}{{ profile.typing_phrases }}{% else %}BS IT Student
 Full-Stack Developer
 Django Enthusiast
 Problem Solver
-Open to Opportunities</textarea
-                      >
+Open to Opportunities{% endif %}</textarea>
                       <span class="field-hint"
                         >Each line becomes a phrase in the typing
                         animation.</span

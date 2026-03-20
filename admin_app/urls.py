@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.dashboard, name='admin_dashboard'),
-    # Use Django's auth login view and the custom registration/login.html template
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='admin_login'),
+    # Use Django's auth login view and the custom admin_app login template
+    path('login/', auth_views.LoginView.as_view(template_name='admin_app/login.html'), name='admin_login'),
     # API endpoints for CMS actions
     path('api/save-profile/', views.save_profile, name='api_save_profile'),
     path('api/save-project/', views.save_project, name='api_save_project'),
