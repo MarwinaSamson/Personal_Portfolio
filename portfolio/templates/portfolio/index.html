@@ -12,25 +12,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 
   <!-- Devicons for skill icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
+  
 
   <style>
     /* ─── CSS Variables ─────────────────────────────────── */
     :root {
-      --bg:        #0a0a0f;
-      --bg2:       #111118;
-      --bg3:       #18181f;
-      --surface:   #1e1e28;
-      --border:    #2a2a38;
-      --accent:    #7fffb2;       /* electric mint */
-      --accent2:   #5b8cff;       /* soft electric blue */
-      --text:      #e8e8f0;
-      --muted:     #8888a8;
+      --bg:        #e8f2f7;       /* lightest blue-white */
+      --bg2:       #ddeaf2;       /* soft blue-grey */
+      --bg3:       #cfe0eb;       /* medium blue tint */
+      --surface:   #f0eeea;       /* off-white / warm white from palette */
+      --border:    #b8d0dc;       /* muted blue border */
+      --accent:    #3a7a94;       /* dark teal – primary accent */
+      --accent2:   #5b9db8;       /* steel blue – secondary accent */
+      --text:      #1e3d4f;       /* deep navy for readability */
+      --muted:     #6a90a0;       /* muted blue-grey */
       --font-head: 'Syne', sans-serif;
       --font-mono: 'DM Mono', monospace;
       --font-body: 'DM Sans', sans-serif;
       --radius:    12px;
-      --glow:      0 0 40px rgba(127,255,178,.12);
+      --glow:      0 0 40px rgba(58,122,148,.15);
     }
 
     /* ─── Reset & Base ──────────────────────────────────── */
@@ -56,13 +56,17 @@
     }
     section, nav, footer { position: relative; z-index: 1; }
 
+    
+
     /* ─── Scrollbar ─────────────────────────────────────── */
+    .skill-chip i { color: revert; }
+
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
     /* ─── Selection ─────────────────────────────────────── */
-    ::selection { background: rgba(127,255,178,.2); }
+    ::selection { background: rgba(58,122,148,.2); }
 
     /* ─── Typography helpers ────────────────────────────── */
     h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; }
@@ -78,7 +82,7 @@
     }
     nav.scrolled {
       border-color: var(--border);
-      background: rgba(10,10,15,.85);
+      background: rgba(232,242,247,.9);
     }
     .nav-logo {
       font-family: var(--font-mono);
@@ -121,7 +125,7 @@
       letter-spacing: .15em;
       text-transform: uppercase;
       color: var(--accent);
-      border: 1px solid rgba(127,255,178,.25);
+      border: 1px solid rgba(58,122,148,.3);
       padding: 6px 14px;
       border-radius: 999px;
       margin-bottom: 1.5rem;
@@ -173,7 +177,7 @@
     }
     .btn-primary {
       background: var(--accent);
-      color: var(--bg);
+      color: var(--surface);
       font-family: var(--font-head);
       font-weight: 700;
       font-size: .85rem;
@@ -185,7 +189,7 @@
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(127,255,178,.3);
+      box-shadow: 0 8px 30px rgba(58,122,148,.35);
     }
     .btn-outline {
       border: 1px solid var(--border);
@@ -232,7 +236,7 @@
     .avatar-ring {
       position: absolute; inset: -12px;
       border-radius: 50%;
-      border: 1px solid rgba(127,255,178,.2);
+      border: 1px solid rgba(58,122,148,.25);
       animation: spinSlow 12s linear infinite;
     }
     .avatar-ring::before {
@@ -271,7 +275,7 @@
     }
     .hero-card {
       position: absolute;
-      background: rgba(30,30,40,.9);
+      background: rgba(240,238,234,.92);
       backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -381,7 +385,7 @@
       padding: 1.5rem;
       transition: border-color .3s;
     }
-    .info-card:hover { border-color: rgba(127,255,178,.3); }
+    .info-card:hover { border-color: rgba(58,122,148,.4); }
     .info-card-title {
       font-family: var(--font-mono);
       font-size: .7rem;
@@ -420,7 +424,7 @@
     .tab-btn.active, .tab-btn:hover {
       color: var(--accent);
       border-color: var(--accent);
-      background: rgba(127,255,178,.06);
+      background: rgba(58,122,148,.08);
     }
     .skills-grid {
       display: grid;
@@ -506,9 +510,9 @@
       transition: border-color .3s, transform .3s, box-shadow .3s;
     }
     .project-card:hover {
-      border-color: rgba(127,255,178,.3);
+      border-color: rgba(58,122,148,.4);
       transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      box-shadow: 0 20px 60px rgba(58,122,148,.15);
     }
     .project-thumb {
       width: 100%;
@@ -529,7 +533,7 @@
     .project-thumb::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(10,10,15,.6));
+      background: linear-gradient(to bottom, transparent 60%, rgba(232,242,247,.5));
     }
     .project-status-badge {
       position: absolute;
@@ -543,8 +547,8 @@
       border-radius: 999px;
       border: 1px solid;
     }
-    .badge-completed { color: var(--accent); border-color: rgba(127,255,178,.3); background: rgba(127,255,178,.08); }
-    .badge-in_progress { color: var(--accent2); border-color: rgba(91,140,255,.3); background: rgba(91,140,255,.08); }
+    .badge-completed { color: var(--accent); border-color: rgba(58,122,148,.35); background: rgba(58,122,148,.1); }
+    .badge-in_progress { color: var(--accent2); border-color: rgba(91,157,184,.35); background: rgba(91,157,184,.1); }
     .badge-concept { color: var(--muted); border-color: var(--border); }
     .project-body { padding: 1.4rem; }
     .project-name {
@@ -567,9 +571,9 @@
     .stack-tag {
       font-family: var(--font-mono);
       font-size: .65rem;
-      color: var(--accent2);
-      background: rgba(91,140,255,.1);
-      border: 1px solid rgba(91,140,255,.2);
+      color: var(--accent);
+      background: rgba(58,122,148,.1);
+      border: 1px solid rgba(58,122,148,.22);
       border-radius: 4px;
       padding: 3px 9px;
       letter-spacing: .05em;
@@ -660,7 +664,7 @@
     .form-group textarea { resize: vertical; min-height: 130px; }
     .btn-send {
       background: var(--accent);
-      color: var(--bg);
+      color: var(--surface);
       font-family: var(--font-head);
       font-weight: 700;
       font-size: .9rem;
@@ -674,7 +678,7 @@
     }
     .btn-send:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(127,255,178,.25);
+      box-shadow: 0 10px 30px rgba(58,122,148,.3);
     }
     .form-message {
       font-family: var(--font-mono);
@@ -683,8 +687,8 @@
       border-radius: 6px;
       display: none;
     }
-    .form-message.success { background: rgba(127,255,178,.1); color: var(--accent); border: 1px solid rgba(127,255,178,.2); display: block; }
-    .form-message.error { background: rgba(255,80,80,.1); color: #ff6b6b; border: 1px solid rgba(255,80,80,.2); display: block; }
+    .form-message.success { background: rgba(58,122,148,.1); color: var(--accent); border: 1px solid rgba(58,122,148,.25); display: block; }
+    .form-message.error { background: rgba(180,60,60,.08); color: #b04040; border: 1px solid rgba(180,60,60,.2); display: block; }
 
     /* ─── Footer ────────────────────────────────────────── */
     footer {
@@ -727,7 +731,7 @@
       pointer-events: none;
       z-index: 0;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(127,255,178,.04) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(58,122,148,.06) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       transition: left .15s ease, top .15s ease;
     }
@@ -767,7 +771,7 @@
         flex-direction: column;
         position: absolute;
         top: 100%; left: 0; right: 0;
-        background: rgba(10,10,15,.97);
+        background: rgba(232,242,247,.97);
         border-bottom: 1px solid var(--border);
         padding: 1.5rem 5%;
         gap: 1rem;
@@ -792,7 +796,7 @@
 <!-- ═══════════════════════════════════════ NAVBAR -->
 <nav id="navbar">
   <a class="nav-logo" href="#hero">
-    <span>// </span>{% if profile %}{{ profile.name|slice:":1" }}{% else %}M{% endif %}.dev
+    <span></span>{% if profile %}{{ profile.name|slice:":1" }}{% else %}{% endif %}arwina
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
@@ -890,7 +894,44 @@
       <div class="divider"></div>
       <br>
       {% if profile %}
-        <p>{{ profile.about }}</p>
+        {% if profile.about_p1 %}
+          <p>{{ profile.about_p1 }}</p>
+        {% endif %}
+        {% if profile.about_p2 or profile.about_p3 %}
+          <div id="aboutExtra" style="
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+          ">
+            {% if profile.about_p2 %}<p style="margin-top: 1rem;">{{ profile.about_p2 }}</p>{% endif %}
+            {% if profile.about_p3 %}<p style="margin-top: 1rem;">{{ profile.about_p3 }}</p>{% endif %}
+          </div>
+          <button onclick="toggleAbout(this)" style="
+            margin-top: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 14px;
+            font-family: var(--font-mono);
+            font-size: .72rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+          ">
+            <span class="about-btn-label">Read more</span>
+            <svg id="aboutArrow" width="14" height="14" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2"
+                 style="transition: transform .3s;">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        {% endif %}
       {% else %}
         <p>I'm a <strong>4th-year BS Information Technology student</strong> with a deep passion for building full-stack web applications. I love turning ideas into functional, elegant digital products.</p>
         <p>My journey in tech has involved working with Python, Django, PostgreSQL, and modern frontend technologies. I enjoy the full process — from database schema design to crafting pixel-perfect UIs.</p>
@@ -967,7 +1008,14 @@
       <div class="skills-grid">
         {% for skill in category.skills.all %}
         <div class="skill-chip reveal">
-          {% if skill.icon %}<i class="{{ skill.icon }}"></i>{% else %}<span style="font-size:1.5rem;">🔧</span>{% endif %}
+          {% if skill.icon %}
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{{ skill.icon }}/{{ skill.icon }}-original.svg"
+                 style="width:2rem;height:2rem;"
+                 onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{{ skill.icon }}/{{ skill.icon }}-plain.svg'"/>
+            <span style="font-size:1.5rem;display:none;">🔧</span>
+          {% else %}
+            <span style="font-size:1.5rem;">🔧</span>
+          {% endif %}
           <div class="skill-chip-name">{{ skill.name }}</div>
           <div class="skill-bar-wrap">
             <div class="skill-bar-fill" style="width: {{ skill.proficiency }}%;"></div>
@@ -1038,8 +1086,8 @@
           <div class="project-name">{{ project.title }}</div>
           <p class="project-desc">{{ project.description|truncatewords:25 }}</p>
           <div class="project-stack">
-            {% for tech in project.tech_stack.split %}
-              <span class="stack-tag">{{ tech|cut:"," }}</span>
+            {% for tech in project.tech_list %}
+              <span class="stack-tag">{{ tech }}</span>
             {% endfor %}
           </div>
           <div class="project-links">
@@ -1103,7 +1151,7 @@
     <div class="divider"></div>
     <br>
     <p style="color:var(--muted); font-size:.95rem; line-height:1.8; max-width: 420px;">
-      Whether you have an opportunity, a project idea, or just want to say hello — my inbox is open. I'll get back to you as soon as possible.
+      Whether you have an opportunity, a project idea, or just want to say hello,  my inbox is open. I'll get back to you as soon as possible.
     </p>
 
     <div class="contact-detail">
@@ -1122,7 +1170,7 @@
       </div>
       <div class="contact-detail-text">
         <small>Location</small>
-        <p>Davao City, Philippines</p>
+        <p>{% if profile and profile.location %}{{ profile.location }}{% else %}Davao City, Philippines{% endif %}</p>
       </div>
     </div>
   </div>
@@ -1173,6 +1221,26 @@
 
 <!-- ═══════════════════════════════════════ SCRIPTS -->
 <script>
+  // ── About accordion ──────────────────────────────
+  function toggleAbout(btn) {
+    const extra = document.getElementById('aboutExtra');
+    const arrow = document.getElementById('aboutArrow');
+    const label = btn.querySelector('.about-btn-label');
+    const isOpen = extra.style.maxHeight !== '0px' && extra.style.maxHeight !== '';
+
+    if (isOpen) {
+      extra.style.maxHeight = '0';
+      extra.style.opacity = '0';
+      arrow.style.transform = 'rotate(0deg)';
+      label.textContent = 'Read more';
+    } else {
+      extra.style.maxHeight = extra.scrollHeight + 'px';
+      extra.style.opacity = '1';
+      arrow.style.transform = 'rotate(180deg)';
+      label.textContent = 'Read less';
+    }
+  }
+
   // ── Navbar scroll effect ─────────────────────────
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1195,13 +1263,11 @@
   });
 
   // ── Typing effect ─────────────────────────────────
-  const phrases = [
-    'BS IT Student',
-    'Full-Stack Developer',
-    'Django Enthusiast',
-    'Problem Solver',
-    'Open to Opportunities'
-  ];
+  const phrases = {% if profile and profile.typing_phrases %}
+    [{% for phrase in profile.typing_phrases.splitlines %}"{{ phrase|escapejs }}",{% endfor %}]
+  {% else %}
+    ['BS IT Student','Full-Stack Developer','Django Enthusiast','Problem Solver','Open to Opportunities']
+  {% endif %};
   let pi = 0, ci = 0, deleting = false;
   const el = document.getElementById('typingText');
   function type() {

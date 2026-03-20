@@ -1,0 +1,1855 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio CMS — Admin</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    
+    <!-- Admin Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}" />
+  </head>
+  <body>
+    <!-- ════════════════════════════════════════════ SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo"><span>// </span>M.dev</div>
+        <div class="brand-title">Portfolio CMS</div>
+        <div class="brand-sub">Content Manager v1.0</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Overview</div>
+        <div class="nav-item active" onclick="navigate('dashboard', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+          Dashboard
+        </div>
+
+        <div class="nav-section-label">Portfolio</div>
+        <div class="nav-item" onclick="navigate('profile', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
+          Profile &amp; Hero
+        </div>
+        <div class="nav-item" onclick="navigate('projects', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 7h18M3 12h18M3 17h18" />
+            <rect x="1" y="4" width="22" height="16" rx="2" />
+          </svg>
+          Projects
+        </div>
+        <div class="nav-item" onclick="navigate('skills', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"
+            />
+          </svg>
+          Skills
+        </div>
+        <div class="nav-item" onclick="navigate('about', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
+          About Section
+        </div>
+
+        <div class="nav-section-label">Inbox</div>
+        <div class="nav-item" onclick="navigate('messages', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M2 7l10 7 10-7" />
+          </svg>
+          Messages
+          <span class="nav-badge">3</span>
+        </div>
+
+        <div class="nav-section-label">Settings</div>
+        <div class="nav-item" onclick="navigate('settings', this)">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.07 4.93A10 10 0 1 0 4.93 19.07M12 2v2M12 20v2M2 12h2M20 12h2"
+            />
+          </svg>
+          Settings
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar">M</div>
+          <div class="user-info">
+            <div class="user-name">Marwina</div>
+            <div class="user-role">Administrator</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- /sidebar -->
+
+    <!-- ════════════════════════════════════════════ MAIN -->
+    <main class="main">
+      {% block content %}
+
+      <!-- ── TOPBAR ────────────────────────────────────────── -->
+      <div class="topbar">
+        <button class="hamburger-toggle" onclick="toggleSidebar()">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 12h18M3 6h18M3 18h18" />
+          </svg>
+        </button>
+        <div class="topbar-title" id="topbarTitle">
+          Dashboard <span>/ Overview</span>
+        </div>
+        <div class="topbar-actions">
+          <a href="/" class="btn btn-ghost btn-sm" target="_blank">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            View Site
+          </a>
+          <button class="btn btn-primary btn-sm" onclick="saveAll()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+              />
+              <polyline points="17 21 17 13 7 13 7 21" />
+              <polyline points="7 3 7 8 15 8" />
+            </svg>
+            Save All
+          </button>
+        </div>
+      </div>
+      <!-- /topbar -->
+
+      <!-- ── PAGE CONTENT ──────────────────────────────────── -->
+      <div class="page-content">
+        <!-- ══════════════ PAGE: DASHBOARD ══════════════ -->
+        <div class="page active" id="page-dashboard">
+          <!-- Stats row -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon blue">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 7h18M3 12h18M3 17h18" />
+                    <rect x="1" y="4" width="22" height="16" rx="2" />
+                  </svg>
+                </div>
+                <div class="stat-dot"></div>
+              </div>
+              <div class="stat-num">{{ projects_count }}</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon teal">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="stat-num">{{ skills_count }}</div>
+              <div class="stat-label">Skills</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon beige">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                </div>
+                <div class="stat-dot" style="background: var(--warn)"></div>
+              </div>
+              <div class="stat-num">{{ unread_messages }}</div>
+              <div class="stat-label">Unread Msgs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div class="stat-icon green">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg>
+                </div>
+              </div>
+              <div class="stat-num">98%</div>
+              <div class="stat-label">Uptime</div>
+            </div>
+          </div>
+          <!-- /stats-row -->
+
+          <div class="grid-2">
+            <!-- Recent Messages -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                  Recent Messages
+                </div>
+                <button
+                  class="btn btn-ghost btn-sm"
+                  onclick="
+                    navigate(
+                      'messages',
+                      document.querySelectorAll('.nav-item')[4],
+                    )
+                  "
+                >
+                  View All
+                </button>
+              </div>
+              <div class="panel-body" style="padding-top: 10px">
+                <div
+                  class="msg-item msg-unread"
+                  onclick="
+                    navigate(
+                      'messages',
+                      document.querySelectorAll('.nav-item')[4],
+                    )
+                  "
+                >
+                  <div class="msg-avatar">J</div>
+                  <div class="msg-body">
+                    <div class="msg-top">
+                      <span class="msg-name">Juan dela Cruz</span
+                      ><span class="msg-time">2h ago</span>
+                    </div>
+                    <div class="msg-subject">Internship opportunity</div>
+                    <div class="msg-preview">
+                      Hi Marwina! I came across your portfolio and I'm really
+                      impressed...
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="msg-item msg-unread"
+                  onclick="
+                    navigate(
+                      'messages',
+                      document.querySelectorAll('.nav-item')[4],
+                    )
+                  "
+                >
+                  <div class="msg-avatar">A</div>
+                  <div class="msg-body">
+                    <div class="msg-top">
+                      <span class="msg-name">Ana Reyes</span
+                      ><span class="msg-time">5h ago</span>
+                    </div>
+                    <div class="msg-subject">Collaboration project</div>
+                    <div class="msg-preview">
+                      Would you be interested in collaborating on a Django
+                      project...
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="msg-item msg-unread"
+                  onclick="
+                    navigate(
+                      'messages',
+                      document.querySelectorAll('.nav-item')[4],
+                    )
+                  "
+                >
+                  <div class="msg-avatar">M</div>
+                  <div class="msg-body">
+                    <div class="msg-top">
+                      <span class="msg-name">Mark Santos</span
+                      ><span class="msg-time">1d ago</span>
+                    </div>
+                    <div class="msg-subject">Freelance web project</div>
+                    <div class="msg-preview">
+                      Hello! We have a small ecommerce project in need of a
+                      developer...
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="msg-item"
+                  onclick="
+                    navigate(
+                      'messages',
+                      document.querySelectorAll('.nav-item')[4],
+                    )
+                  "
+                >
+                  <div class="msg-avatar">L</div>
+                  <div class="msg-body">
+                    <div class="msg-top">
+                      <span class="msg-name">Lea Gomez</span
+                      ><span class="msg-time">3d ago</span>
+                    </div>
+                    <div class="msg-subject">React question</div>
+                    <div class="msg-preview">
+                      Hey! Quick question about how you handled state in your
+                      portfolio...
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /recent messages panel -->
+
+            <!-- Activity Log -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  Recent Activity
+                </div>
+              </div>
+              <div class="panel-body" style="padding-top: 10px">
+                <div class="activity-item">
+                  <div
+                    class="activity-dot"
+                    style="background: var(--success)"
+                  ></div>
+                  <div>
+                    <div class="activity-text">
+                      Project <strong>Personal Portfolio</strong> status updated
+                      to Completed
+                    </div>
+                    <div class="activity-time">Today, 10:32 AM</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div
+                    class="activity-dot"
+                    style="background: var(--accent)"
+                  ></div>
+                  <div>
+                    <div class="activity-text">
+                      New skill <strong>PostgreSQL</strong> added to Tools
+                      category
+                    </div>
+                    <div class="activity-time">Today, 9:15 AM</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div
+                    class="activity-dot"
+                    style="background: var(--accent2)"
+                  ></div>
+                  <div>
+                    <div class="activity-text">Profile bio updated</div>
+                    <div class="activity-time">Yesterday, 4:45 PM</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div
+                    class="activity-dot"
+                    style="background: var(--warn)"
+                  ></div>
+                  <div>
+                    <div class="activity-text">
+                      Project <strong>Inventory System</strong> marked as In
+                      Progress
+                    </div>
+                    <div class="activity-time">Yesterday, 2:10 PM</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot" style="background: #a08060"></div>
+                  <div>
+                    <div class="activity-text">
+                      Hero typing phrases updated (5 phrases)
+                    </div>
+                    <div class="activity-time">2 days ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div
+                    class="activity-dot"
+                    style="background: var(--success)"
+                  ></div>
+                  <div>
+                    <div class="activity-text">
+                      Replied to message from <strong>Lea Gomez</strong>
+                    </div>
+                    <div class="activity-time">3 days ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /activity panel -->
+          </div>
+          <!-- /grid-2 -->
+
+          <!-- Quick Actions -->
+          <div class="section-divider" style="margin-top: 28px">
+            <span class="section-divider-label">Quick Actions</span>
+            <div class="section-divider-line"></div>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <button
+              class="btn btn-ghost"
+              onclick="
+                navigate('projects', document.querySelectorAll('.nav-item')[2]);
+                openEditPanel('new-project');
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add New Project
+            </button>
+            <button
+              class="btn btn-ghost"
+              onclick="
+                navigate('skills', document.querySelectorAll('.nav-item')[3]);
+                openEditPanel('new-skill');
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add New Skill
+            </button>
+            <button
+              class="btn btn-ghost"
+              onclick="
+                navigate('profile', document.querySelectorAll('.nav-item')[1])
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit Profile
+            </button>
+            <button
+              class="btn btn-ghost"
+              onclick="
+                navigate('messages', document.querySelectorAll('.nav-item')[4])
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M2 7l10 7 10-7" />
+              </svg>
+              View Messages
+            </button>
+          </div>
+        </div>
+        <!-- /page-dashboard -->
+
+        <!-- ══════════════ PAGE: PROFILE ══════════════ -->
+        <div class="page" id="page-profile">
+          <div class="grid-2" style="align-items: start">
+            <!-- Left column -->
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <!-- Personal Information -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                    </svg>
+                    Personal Information
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="form-grid">
+                    <!-- Photo upload row -->
+                    <div
+                      class="form-field full"
+                      style="
+                        align-items: center;
+                        gap: 16px;
+                        flex-direction: row;
+                      "
+                    >
+                      <div id="profileAvatarWrap" style="
+                          width: 72px;
+                          height: 72px;
+                          border-radius: 50%;
+                          background: var(--accent);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          font-family: var(--font-head);
+                          font-size: 1.6rem;
+                          font-weight: 800;
+                          color: #fff;
+                          flex-shrink: 0;
+                          overflow: hidden;
+                        ">
+                        {% if profile and profile.profile_image %}
+                          <img id="profileAvatarImg"
+                               src="{{ profile.profile_image.url }}"
+                               style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>
+                        {% else %}
+                          <span id="profileAvatarLetter">{{ profile.name|slice:":1"|upper }}</span>
+                        {% endif %}
+                      </div>
+                      <div>
+                        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('profileImageInput').click()">
+                          Upload Photo
+                        </button>
+                        <input
+                          type="file"
+                          id="profileImageInput"
+                          accept="image/jpeg,image/png,image/webp"
+                          style="display:none"
+                          onchange="previewProfileImage(this)"
+                        />
+                        <div class="field-hint" style="margin-top: 4px">
+                          JPG, PNG or WebP. Max 5MB.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-field">
+                      <label>Full Name</label>
+                      <input id="profile-name" type="text" value="Marwina" />
+                    </div>
+                    <div class="form-field">
+                      <label>Email Address</label>
+                      <input
+                        id="profile-email"
+                        type="email"
+                        value="marwina@example.com"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label>Location</label>
+                      <input
+                        id="profile-location"
+                        type="text"
+                        value="Davao City, Philippines"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label>Degree / Status</label>
+                      <input
+                        id="profile-degree"
+                        type="text"
+                        value="BS Information Technology — 4th Year"
+                      />
+                    </div>
+                    <div class="form-field full">
+                      <label>About / Bio</label>
+                      <textarea id="profile-about" style="min-height: 120px">
+I'm a 4th-year BS Information Technology student with a deep passion for building full-stack web applications. I love turning ideas into functional, elegant digital products.</textarea
+                      >
+                    </div>
+                  </div>
+                  <div style="margin-top: 18px; display: flex; gap: 10px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="saveAll()"
+                    >
+                      Save Changes
+                    </button>
+                    <button class="btn btn-ghost">Reset</button>
+                  </div>
+                </div>
+              </div>
+              <!-- /personal info panel -->
+
+              <!-- Social Links -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                      />
+                      <path
+                        d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                      />
+                    </svg>
+                    Social Links
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="form-grid cols-1" style="gap: 12px">
+                    <div class="form-field">
+                      <label>GitHub URL</label>
+                      <input
+                        id="profile-github"
+                        type="url"
+                        value="{% if profile %}{{ profile.github }}{% endif %}"
+                        placeholder="https://github.com/username"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label>LinkedIn URL</label>
+                      <input
+                        id="profile-linkedin"
+                        type="url"
+                        value="{% if profile %}{{ profile.linkedin }}{% endif %}"
+                        placeholder="https://linkedin.com/in/username"
+                      />
+                    </div>
+                    <div class="form-field">
+                      <label>Personal Website</label>
+                      <input
+                        id="profile-website"
+                        type="url"
+                        value=""
+                        placeholder="https://yourwebsite.com"
+                      />
+                    </div>
+                  </div>
+                  <div style="margin-top: 18px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="saveSocialLinks()"
+                    >
+                      Save Links
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /social links panel -->
+            </div>
+            <!-- /left col -->
+
+            <!-- Right column -->
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <!-- Hero Section -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <polygon
+                        points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+                      />
+                    </svg>
+                    Hero Section
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="form-grid cols-1" style="gap: 14px">
+                    <div class="form-field">
+                      <label>Hero Badge Text</label>
+                      <input type="text" value="Available for opportunities" />
+                    </div>
+                    <div class="form-field">
+                      <label>Hero Description (short)</label>
+                      <textarea style="min-height: 80px">
+A passionate BS IT student specializing in full-stack web development. I build things for the web — clean code, thoughtful design, and practical solutions.</textarea
+                      >
+                    </div>
+                    <div class="form-field">
+                      <label>Typing Phrases (one per line)</label>
+                      <textarea style="min-height: 120px" id="typingPhrases">
+BS IT Student
+Full-Stack Developer
+Django Enthusiast
+Problem Solver
+Open to Opportunities</textarea
+                      >
+                      <span class="field-hint"
+                        >Each line becomes a phrase in the typing
+                        animation.</span
+                      >
+                    </div>
+                    <div class="form-field">
+                      <label>CTA Button 1 Label</label>
+                      <input type="text" value="View Projects" />
+                    </div>
+                    <div class="form-field">
+                      <label>CTA Button 2 Label</label>
+                      <input type="text" value="Get in Touch" />
+                    </div>
+                    <div class="form-field">
+                      <label>Floating Card — Top Left</label>
+                      <input type="text" value="BS Information Technology" />
+                    </div>
+                    <div class="form-field">
+                      <label>Floating Card — Bottom Right</label>
+                      <input type="text" value="4th Year Student" />
+                    </div>
+                  </div>
+                  <div style="margin-top: 18px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="showToast('Hero section saved!', 'success')"
+                    >
+                      Save Hero
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /hero section panel -->
+
+              <!-- Resume Upload -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                      />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    Resume / CV
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="img-upload-zone">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                      />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="12" y1="18" x2="12" y2="12" />
+                      <line x1="9" y1="15" x2="15" y2="15" />
+                    </svg>
+                    <p><strong>Click to upload</strong> your resume PDF</p>
+                    <p>PDF recommended · Max 5MB</p>
+                  </div>
+                </div>
+              </div>
+              <!-- /resume panel -->
+            </div>
+            <!-- /right col -->
+          </div>
+        </div>
+        <!-- /page-profile -->
+
+        <!-- ══════════════ PAGE: PROJECTS ══════════════ -->
+        <div class="page" id="page-projects">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 7h18M3 12h18M3 17h18" />
+                  <rect x="1" y="4" width="22" height="16" rx="2" />
+                </svg>
+                All Projects
+              </div>
+              <button
+                class="btn btn-primary btn-sm"
+                onclick="openEditPanel('new-project')"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                New Project
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Stack</th>
+                    <th>Status</th>
+                    <th>Featured</th>
+                    <th>Last Updated</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for project in projects %}
+                  <tr data-id="{{ project.id }}">
+                    <td>
+                      <div style="font-weight: 600; color: var(--text)">
+                        {{ project.title }}
+                      </div>
+                      <div
+                        style="
+                          font-size: 0.75rem;
+                          color: var(--muted);
+                          font-family: var(--font-mono);
+                        "
+                      >
+                        {{ project.title|slugify }}
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display: flex; gap: 4px; flex-wrap: wrap">
+                        <span class="badge badge-grey"
+                          >{{ project.tech_stack }}</span
+                        >
+                      </div>
+                    </td>
+                    <td>
+                      {% if project.status == 'completed' %}
+                      <span class="badge badge-green">
+                        <span
+                          class="badge-dot"
+                          style="background: var(--success)"
+                        ></span
+                        >Completed
+                      </span>
+                      {% elif project.status == 'in_progress' %}
+                      <span class="badge badge-warn">
+                        <span
+                          class="badge-dot"
+                          style="background: var(--warn)"
+                        ></span
+                        >In Progress
+                      </span>
+                      {% else %}
+                      <span class="badge badge-grey">Concept</span>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <label class="toggle">
+                        <input
+                          type="checkbox"
+                          {%
+                          if
+                          project.is_featured
+                          %}checked{%
+                          endif
+                          %}
+                        />
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </td>
+                    <td
+                      style="
+                        font-family: var(--font-mono);
+                        font-size: 0.75rem;
+                        color: var(--muted);
+                      "
+                    >
+                      {{ project.created_at|date:"M j, Y" }}
+                    </td>
+                    <td>
+                      <div style="display: flex; gap: 6px">
+                        <button
+                          class="btn btn-ghost btn-sm"
+                          onclick="editProject({{ project.id }})"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          class="btn btn-danger btn-sm"
+                          onclick="deleteProjectUI({{ project.id }})"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="6">No projects yet.</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- /page-projects -->
+
+        <!-- ══════════════ PAGE: SKILLS ══════════════ -->
+        <div class="page" id="page-skills">
+          <div class="grid-2" style="align-items: start">
+            <!-- Skills list -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"
+                    />
+                  </svg>
+                  Skills List
+                </div>
+                <button
+                  class="btn btn-primary btn-sm"
+                  onclick="openEditPanel('new-skill')"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                  Add Skill
+                </button>
+              </div>
+              <div class="panel-body">
+                <div class="tab-bar">
+                  {% for category in skill_categories %}
+                  <div class="tab {% if forloop.first %}active{% endif %}"
+                       onclick="switchTab(this, 'tab-cat-{{ category.id }}')">
+                    {{ category.name }}
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <!-- Skills rendered from DB -->
+                {% for category in skill_categories %}
+                <div id="tab-cat-{{ category.id }}"
+                     {% if not forloop.first %}style="display:none"{% endif %}>
+                  {% for skill in category.skills.all %}
+                  <div class="skill-row" data-skill-id="{{ skill.id }}">
+                    <div style="display: flex; align-items: center; gap: 8px">
+                      <div class="skill-icon-preview">
+                        {% if skill.icon %}
+                          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{{ skill.icon }}/{{ skill.icon }}-original.svg"
+                               style="width:1.4rem;height:1.4rem;"
+                               onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{{ skill.icon }}/{{ skill.icon }}-plain.svg'"/>
+                        {% else %}
+                          🔧
+                        {% endif %}
+                      </div>
+                      <span style="font-size: 0.85rem; font-weight: 600">{{ skill.name }}</span>
+                    </div>
+                    <div>
+                      <div class="skill-bar-preview">
+                        <div class="skill-bar-fill" style="width: {{ skill.proficiency }}%"></div>
+                      </div>
+                    </div>
+                    <span class="badge badge-blue">{{ skill.proficiency }}%</span>
+                    <div style="display: flex; gap: 4px">
+                      <button class="btn btn-ghost btn-sm"
+                              onclick="editSkill({{ skill.id }}, '{{ skill.name }}', '{{ skill.category.name }}', '{{ skill.icon }}', {{ skill.proficiency }})">Edit</button>
+                      <button class="btn btn-danger btn-sm"
+                              onclick="deleteSkillUI({{ skill.id }}, this)">✕</button>
+                    </div>
+                  </div>
+                  {% empty %}
+                  <div style="padding: 16px; font-family: var(--font-mono); font-size: .75rem; color: var(--muted);">
+                    No skills in this category yet.
+                  </div>
+                  {% endfor %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <!-- /skills list panel -->
+
+            <!-- Skill categories -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                  Skill Categories
+                </div>
+                <button
+                  class="btn btn-ghost btn-sm"
+                  onclick="showToast('Category added!', 'success')"
+                >
+                  + Add
+                </button>
+              </div>
+              <div class="panel-body">
+                <div style="display: flex; flex-direction: column; gap: 10px">
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      padding: 10px 12px;
+                      background: var(--bg);
+                      border: 1px solid var(--border);
+                      border-radius: 7px;
+                    "
+                  >
+                    <span>⠿</span>
+                    <input
+                      type="text"
+                      value="Languages"
+                      style="
+                        border: none;
+                        background: transparent;
+                        flex: 1;
+                        padding: 0;
+                        font-size: 0.88rem;
+                      "
+                    />
+                    <button class="btn btn-danger btn-sm">✕</button>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      padding: 10px 12px;
+                      background: var(--bg);
+                      border: 1px solid var(--border);
+                      border-radius: 7px;
+                    "
+                  >
+                    <span>⠿</span>
+                    <input
+                      type="text"
+                      value="Frameworks &amp; Libraries"
+                      style="
+                        border: none;
+                        background: transparent;
+                        flex: 1;
+                        padding: 0;
+                        font-size: 0.88rem;
+                      "
+                    />
+                    <button class="btn btn-danger btn-sm">✕</button>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      padding: 10px 12px;
+                      background: var(--bg);
+                      border: 1px solid var(--border);
+                      border-radius: 7px;
+                    "
+                  >
+                    <span>⠿</span>
+                    <input
+                      type="text"
+                      value="Tools &amp; Databases"
+                      style="
+                        border: none;
+                        background: transparent;
+                        flex: 1;
+                        padding: 0;
+                        font-size: 0.88rem;
+                      "
+                    />
+                    <button class="btn btn-danger btn-sm">✕</button>
+                  </div>
+                </div>
+                <div style="margin-top: 14px">
+                  <button
+                    class="btn btn-primary"
+                    onclick="showToast('Categories saved!', 'success')"
+                  >
+                    Save Order
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- /categories panel -->
+          </div>
+        </div>
+        <!-- /page-skills -->
+
+        <!-- ══════════════ PAGE: ABOUT ══════════════ -->
+        <div class="page" id="page-about">
+          <div class="grid-2" style="align-items: start">
+            <!-- About content -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4M12 16h.01" />
+                  </svg>
+                  About Section Content
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="form-grid cols-1" style="gap: 14px">
+                  <div class="form-field">
+                    <label>Section Eyebrow Text</label>
+                    <input type="text" value="Who I am" />
+                  </div>
+                  <div class="form-field">
+                    <label>Section Title</label>
+                    <input type="text" value="About Me" />
+                  </div>
+                  <div class="form-field">
+                    <label>Paragraph 1</label>
+                    <textarea id="about-p1" style="min-height: 90px">{% if profile %}{{ profile.about_p1 }}{% endif %}</textarea>
+                  </div>
+                  <div class="form-field">
+                    <label>Paragraph 2</label>
+                    <textarea id="about-p2" style="min-height: 90px">{% if profile %}{{ profile.about_p2 }}{% endif %}</textarea>
+                  </div>
+                  <div class="form-field">
+                    <label>Paragraph 3</label>
+                    <textarea id="about-p3" style="min-height: 90px">{% if profile %}{{ profile.about_p3 }}{% endif %}</textarea>
+                  </div>
+                </div>
+                <div style="margin-top: 18px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="saveAbout()"
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+              </div>
+            </div>
+            <!-- /about content panel -->
+
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <!-- Stat cards -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">Stat Cards</div>
+                  <button class="btn btn-ghost btn-sm">+ Add Stat</button>
+                </div>
+                <div class="panel-body">
+                  <div style="display: flex; flex-direction: column; gap: 10px">
+                    <div
+                      class="form-grid"
+                      style="gap: 8px; grid-template-columns: 80px 1fr auto"
+                    >
+                      <div class="form-field">
+                        <label>Number</label><input type="text" value="4th" />
+                      </div>
+                      <div class="form-field">
+                        <label>Label</label
+                        ><input type="text" value="Year Student" />
+                      </div>
+                      <button
+                        class="btn btn-danger btn-sm"
+                        style="align-self: flex-end"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <div
+                      class="form-grid"
+                      style="gap: 8px; grid-template-columns: 80px 1fr auto"
+                    >
+                      <div class="form-field">
+                        <label>Number</label><input type="text" value="BS IT" />
+                      </div>
+                      <div class="form-field">
+                        <label>Label</label
+                        ><input type="text" value="Degree Program" />
+                      </div>
+                      <button
+                        class="btn btn-danger btn-sm"
+                        style="align-self: flex-end"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <div
+                      class="form-grid"
+                      style="gap: 8px; grid-template-columns: 80px 1fr auto"
+                    >
+                      <div class="form-field">
+                        <label>Number</label><input type="text" value="5+" />
+                      </div>
+                      <div class="form-field">
+                        <label>Label</label
+                        ><input type="text" value="Projects Built" />
+                      </div>
+                      <button
+                        class="btn btn-danger btn-sm"
+                        style="align-self: flex-end"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <div
+                      class="form-grid"
+                      style="gap: 8px; grid-template-columns: 80px 1fr auto"
+                    >
+                      <div class="form-field">
+                        <label>Number</label><input type="text" value="∞" />
+                      </div>
+                      <div class="form-field">
+                        <label>Label</label
+                        ><input type="text" value="Things to Learn" />
+                      </div>
+                      <button
+                        class="btn btn-danger btn-sm"
+                        style="align-self: flex-end"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                  <div style="margin-top: 14px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="showToast('Stats saved!', 'success')"
+                    >
+                      Save Stats
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /stat cards panel -->
+
+              <!-- Info cards -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">Info Cards</div>
+                  <button class="btn btn-ghost btn-sm">+ Add Card</button>
+                </div>
+                <div class="panel-body">
+                  <div style="display: flex; flex-direction: column; gap: 12px">
+                    <div
+                      style="
+                        background: var(--bg);
+                        border: 1px solid var(--border);
+                        border-radius: 7px;
+                        padding: 12px;
+                      "
+                    >
+                      <div class="form-grid cols-1" style="gap: 8px">
+                        <div class="form-field">
+                          <label>Card Title (with emoji)</label
+                          ><input type="text" value="🎓 Education" />
+                        </div>
+                        <div class="form-field">
+                          <label>Main Text</label
+                          ><input
+                            type="text"
+                            value="BS Information Technology"
+                          />
+                        </div>
+                        <div class="form-field">
+                          <label>Sub Text</label
+                          ><input
+                            type="text"
+                            value="4th Year — Currently enrolled"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        background: var(--bg);
+                        border: 1px solid var(--border);
+                        border-radius: 7px;
+                        padding: 12px;
+                      "
+                    >
+                      <div class="form-grid cols-1" style="gap: 8px">
+                        <div class="form-field">
+                          <label>Card Title (with emoji)</label
+                          ><input type="text" value="🎯 Looking For" />
+                        </div>
+                        <div class="form-field">
+                          <label>Main Text</label
+                          ><input
+                            type="text"
+                            value="Internship / Entry-Level Roles"
+                          />
+                        </div>
+                        <div class="form-field">
+                          <label>Sub Text</label
+                          ><input
+                            type="text"
+                            value="Open to remote &amp; on-site positions"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 14px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="showToast('Info cards saved!', 'success')"
+                    >
+                      Save Cards
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /info cards panel -->
+            </div>
+          </div>
+        </div>
+        <!-- /page-about -->
+
+        <!-- ══════════════ PAGE: MESSAGES ══════════════ -->
+        <div class="page" id="page-messages">
+          <div class="grid-2" style="align-items: start">
+            <!-- Inbox list -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                  Inbox
+                </div>
+                <div style="display: flex; gap: 6px">
+                  <button
+                    class="btn btn-ghost btn-sm"
+                    onclick="showToast('All marked as read', 'success')"
+                  >
+                    Mark All Read
+                  </button>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    onclick="showToast('Cleared', 'error')"
+                  >
+                    Clear All
+                  </button>
+                </div>
+              </div>
+              <div class="panel-body" id="inboxBody" style="padding-top: 8px">
+                <div style="padding:20px;font-family:var(--font-mono);font-size:.75rem;color:var(--muted);">
+                  Loading messages...
+                </div>
+              </div>
+            </div>
+            <!-- /inbox panel -->
+
+            <!-- Message detail -->
+            <div class="panel" id="msgDetail">
+              <div class="panel-header">
+                <div class="panel-title">Message Detail</div>
+              </div>
+              <div class="panel-body" id="msgDetailBody">
+                <div style="text-align: center; padding: 40px 20px">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--border)"
+                    stroke-width="1.5"
+                    style="margin-bottom: 12px"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 0.75rem;
+                      color: var(--muted);
+                    "
+                  >
+                    Select a message to read
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /message detail panel -->
+          </div>
+        </div>
+        <!-- /page-messages -->
+
+        <!-- ══════════════ PAGE: SETTINGS ══════════════ -->
+        <div class="page" id="page-settings">
+          <div class="grid-2" style="align-items: start">
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <!-- Security -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    Security
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="form-grid cols-1" style="gap: 12px">
+                    <div class="form-field">
+                      <label>Current Password</label>
+                      <input type="password" placeholder="••••••••" />
+                    </div>
+                    <div class="form-field">
+                      <label>New Password</label>
+                      <input type="password" placeholder="••••••••" />
+                    </div>
+                    <div class="form-field">
+                      <label>Confirm New Password</label>
+                      <input type="password" placeholder="••••••••" />
+                    </div>
+                  </div>
+                  <div style="margin-top: 14px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="showToast('Password updated!', 'success')"
+                    >
+                      Update Password
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /security panel -->
+
+              <!-- SEO -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M18 20V10M12 20V4M6 20v-6" />
+                    </svg>
+                    SEO &amp; Meta
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="form-grid cols-1" style="gap: 12px">
+                    <div class="form-field">
+                      <label>Page Title</label>
+                      <input type="text" value="Marwina — Portfolio" />
+                    </div>
+                    <div class="form-field">
+                      <label>Meta Description</label>
+                      <textarea style="min-height: 70px">
+Full-stack developer and BS IT student based in Davao City. I build clean, practical web applications with Django and PostgreSQL.</textarea
+                      >
+                    </div>
+                    <div class="form-field">
+                      <label>Keywords</label>
+                      <input
+                        type="text"
+                        value="django developer, python, web developer davao, full stack"
+                      />
+                    </div>
+                  </div>
+                  <div style="margin-top: 14px">
+                    <button
+                      class="btn btn-primary"
+                      onclick="showToast('SEO settings saved!', 'success')"
+                    >
+                      Save SEO
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /SEO panel -->
+            </div>
+            <!-- /left col -->
+
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <!-- Notifications -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    Notifications
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div style="display: flex; flex-direction: column; gap: 14px">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <div>
+                        <div style="font-size: 0.85rem; font-weight: 500">
+                          Email on new message
+                        </div>
+                        <div
+                          style="
+                            font-family: var(--font-mono);
+                            font-size: 0.67rem;
+                            color: var(--muted);
+                          "
+                        >
+                          Receive email when someone contacts you
+                        </div>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" checked /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <div>
+                        <div style="font-size: 0.85rem; font-weight: 500">
+                          Portfolio maintenance mode
+                        </div>
+                        <div
+                          style="
+                            font-family: var(--font-mono);
+                            font-size: 0.67rem;
+                            color: var(--muted);
+                          "
+                        >
+                          Show a maintenance page to visitors
+                        </div>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <div>
+                        <div style="font-size: 0.85rem; font-weight: 500">
+                          Show "Available for work" badge
+                        </div>
+                        <div
+                          style="
+                            font-family: var(--font-mono);
+                            font-size: 0.67rem;
+                            color: var(--muted);
+                          "
+                        >
+                          Displays the green dot in hero section
+                        </div>
+                      </div>
+                      <label class="toggle"
+                        ><input type="checkbox" checked /><span
+                          class="toggle-slider"
+                        ></span
+                      ></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /notifications panel -->
+
+              <!-- Data & Backup -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <polyline points="1 4 1 10 7 10" />
+                      <path d="M3.51 15a9 9 0 1 0 .49-3.5" />
+                    </svg>
+                    Data &amp; Backup
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div style="display: flex; flex-direction: column; gap: 10px">
+                    <button
+                      class="btn btn-ghost"
+                      onclick="showToast('Backup created!', 'success')"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      Export Portfolio Data (JSON)
+                    </button>
+                    <button
+                      class="btn btn-ghost"
+                      onclick="showToast('Data imported!', 'success')"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17 8 12 3 7 8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                      </svg>
+                      Import / Restore Backup
+                    </button>
+                    <button
+                      class="btn btn-danger"
+                      onclick="showToast('All data cleared!', 'error')"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v6M14 11v6M9 6V4h6v2" />
+                      </svg>
+                      Clear All Data
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /backup panel -->
+            </div>
+            <!-- /right col -->
+          </div>
+        </div>
+        <!-- /page-settings -->
+      </div>
+      <!-- /page-content -->
+    </main>
+    <!-- /main -->
+
+    {% endblock %}
+
+    <!-- ════════════════════════════════════════════ EDIT OVERLAY -->
+    <div class="edit-overlay" id="editOverlay" onclick="closeEditPanel()"></div>
+
+    <div class="edit-panel" id="editPanel">
+      <div class="edit-panel-header">
+        <div class="edit-panel-title" id="editPanelTitle">Edit</div>
+        <div class="close-btn" onclick="closeEditPanel()">✕</div>
+      </div>
+      <div class="edit-panel-body" id="editPanelBody">
+        <!-- filled by JS -->
+      </div>
+      <div class="edit-panel-footer">
+        <button class="btn btn-ghost" onclick="closeEditPanel()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveEditPanel()">
+          Save Changes
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════ TOAST -->
+    <div class="toast" id="toast">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        id="toastIcon"
+      >
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+      <span id="toastMsg">Saved!</span>
+    </div>
+
+    <!-- Admin Dashboard JS -->
+    <script src="{% static 'js/admin-dashboard.js' %}"></script>
+  </body>
+</html>

@@ -4,13 +4,18 @@ class Profile(models.Model):
     name = models.CharField(max_length=100)
     tagline = models.CharField(max_length=200)  # e.g. "BS IT Student | Aspiring Developer"
     about = models.TextField()
+    about_p1 = models.TextField(blank=True)
+    about_p2 = models.TextField(blank=True)
+    about_p3 = models.TextField(blank=True)
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
     resume = models.FileField(upload_to='resume/', blank=True, null=True)
     github = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
     email = models.EmailField()
+    location = models.CharField(max_length=200, blank=True)
+    degree = models.CharField(max_length=200, blank=True)
+    typing_phrases = models.TextField(blank=True, help_text="One phrase per line")
     is_active = models.BooleanField(default=True)
-
     def __str__(self):
         return self.name
 

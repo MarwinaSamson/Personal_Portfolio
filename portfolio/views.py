@@ -7,6 +7,8 @@ def index(request):
     skill_categories = SkillCategory.objects.prefetch_related('skills').all()
     featured_projects = Project.objects.filter(is_featured=True)
     all_projects = Project.objects.all()
+    for project in all_projects:
+        project.tech_list = [t.strip() for t in project.tech_stack.split(',') if t.strip()]
 
     if request.method == 'POST':
         name = request.POST.get('name')
