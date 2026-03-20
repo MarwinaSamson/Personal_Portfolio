@@ -2,7 +2,7 @@ from django.db import models
 
 class Profile(models.Model):
     name = models.CharField(max_length=100)
-    tagline = models.CharField(max_length=200)  # e.g. "BS IT Student | Aspiring Developer"
+    tagline = models.CharField(max_length=200) 
     about = models.TextField()
     about_p1 = models.TextField(blank=True)
     about_p2 = models.TextField(blank=True)
@@ -38,8 +38,8 @@ class SkillCategory(models.Model):
 class Skill(models.Model):
     category = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='skills')
     name = models.CharField(max_length=100)
-    icon = models.CharField(max_length=100, blank=True)  # e.g. devicon class or emoji
-    proficiency = models.PositiveIntegerField(default=80)  # 0–100 for progress bar
+    icon = models.CharField(max_length=100, blank=True)  
+    proficiency = models.PositiveIntegerField(default=80)  
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
@@ -58,7 +58,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     thumbnail = models.ImageField(upload_to='projects/', blank=True, null=True)
-    tech_stack = models.CharField(max_length=300)  # comma-separated e.g. "Django, PostgreSQL, JS"
+    tech_stack = models.CharField(max_length=300)  
     github_url = models.URLField(blank=True)
     live_url = models.URLField(blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='completed')

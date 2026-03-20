@@ -1,7 +1,4 @@
-/* ============================================================
-   Portfolio CMS — Admin Dashboard JavaScript
-   Path: static/js/admin-dashboard.js
-   ============================================================ */
+
 
 /* ── SHARED UTILITIES ─────────────────────────────────────── */
 function getCookieGlobal(name) {
@@ -415,7 +412,6 @@ function editProject(projectId) {
     .then(r => r.json())
     .then(proj => {
       openEditPanel('edit-project');
-      // Fields exist in DOM now — openEditPanel injected them above
       document.getElementById('edit-project-id').value = proj.id || '';
       document.getElementById('edit-project-title').value = proj.title || '';
       document.getElementById('edit-project-description').value = proj.description || '';
@@ -461,7 +457,6 @@ function deleteProjectUI(projectId) {
     .then(data => {
       if (data.success) {
         showToast('Project deleted', 'success');
-        // Remove row from table
         document.querySelector(`tr[data-id="${projectId}"]`)?.remove();
       } else {
         showToast('Delete failed: ' + (data.error || 'unknown'), 'error');

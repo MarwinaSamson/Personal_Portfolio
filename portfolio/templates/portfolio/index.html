@@ -15,8 +15,6 @@
 </head>
 
 <body>
-
-<!-- Cursor glow effect -->
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- ═══════════════════════════════════════ NAVBAR -->
@@ -227,7 +225,6 @@
   </div>
 
   {% if skill_categories %}
-    <!-- Dynamic from DB -->
     {% for category in skill_categories %}
     <div class="reveal" style="margin-bottom: 3rem;">
       <h3 style="font-family: var(--font-mono); font-size: .8rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem;">{{ category.name }}</h3>

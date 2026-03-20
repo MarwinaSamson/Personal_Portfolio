@@ -6,13 +6,11 @@ from django.views.decorators.http import require_http_methods
 from django.db.models import Count
 from .models import *  # Empty, but ok
 from portfolio.models import Profile, SkillCategory, Skill, Project, ContactMessage
-# from portfolio.forms import *  # Will use modelforms later
 import json
 
 
 @login_required
 def dashboard(request):
-    # Stats for dashboard
     projects_count = Project.objects.count()
     skills_count = Skill.objects.count()
     unread_messages = ContactMessage.objects.filter(is_read=False).count()
@@ -40,7 +38,7 @@ def dashboard(request):
     }
     return render(request, 'admin_app/admin-dashboard.html', context)
 
-# AJAX endpoints for JS interactions (mock for now, full CRUD later)
+# AJAX endpoints for JS interactions 
 @require_http_methods(["POST"])
 @login_required
 def save_profile(request):
@@ -272,7 +270,6 @@ def save_about(request):
         profile.about_p1 = p1
         profile.about_p2 = p2
         profile.about_p3 = p3
-        # also keep the combined about field in sync for anything that still uses it
         profile.about = '\n\n'.join(filter(None, [p1, p2, p3]))
         profile.save()
 
@@ -352,5 +349,5 @@ def delete_skill(request, skill_id):
         return JsonResponse({'success': True})
     except Skill.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Not found'}, status=404)
-# ... more CRUD views to be expanded
+
 

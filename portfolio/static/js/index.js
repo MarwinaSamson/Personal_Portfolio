@@ -60,7 +60,6 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // Animate skill bars inside this element
         entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
           const w = bar.style.width;
           bar.style.width = '0%';
