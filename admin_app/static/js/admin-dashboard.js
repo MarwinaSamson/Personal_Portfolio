@@ -201,8 +201,8 @@ const EDIT_TEMPLATES = {
           <label>Category</label>
           <select id="new-skill-category">
             <option>Languages</option>
-            <option>Frameworks</option>
-            <option>Tools</option>
+            <option>Frameworks & Libraries</option>
+            <option>Tools & Databases</option>
           </select>
         </div>
         <div class="form-field">
@@ -238,8 +238,8 @@ const EDIT_TEMPLATES = {
           <label>Category</label>
           <select id="edit-skill-category">
             <option>Languages</option>
-            <option>Frameworks</option>
-            <option>Tools</option>
+            <option>Frameworks & Libraries</option>
+            <option>Tools & Databases</option>
           </select>
         </div>
         <div class="form-field">
