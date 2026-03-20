@@ -787,14 +787,14 @@
                     </div>
                     <div class="form-field">
                       <label>Hero Description (short)</label>
-                      <textarea style="min-height: 80px">
+                      {% comment %} <textarea style="min-height: 80px">
 A passionate BS IT student specializing in full-stack web development. I build things for the web — clean code, thoughtful design, and practical solutions.</textarea
-                      >
+                      > {% endcomment %}
                     </div>
                     <div class="form-field">
                       <label>Typing Phrases (one per line)</label>
                       <textarea style="min-height: 120px" id="typingPhrases">{% if profile and profile.typing_phrases %}{{ profile.typing_phrases }}{% else %}BS IT Student
-Full-Stack Developer
+Willing to learn and adjust
 Django Enthusiast
 Problem Solver
 Open to Opportunities{% endif %}</textarea>
@@ -823,7 +823,7 @@ Open to Opportunities{% endif %}</textarea>
                   <div style="margin-top: 18px">
                     <button
                       class="btn btn-primary"
-                      onclick="showToast('Hero section saved!', 'success')"
+                      onclick="saveHero()"
                     >
                       Save Hero
                     </button>

@@ -752,3 +752,25 @@ function deleteSkillUI(skillId, btn) {
   })
   .catch(err => showToast('Delete failed: ' + err.message, 'error'));
 }
+
+
+function saveHero() {
+  const payload = {
+    typing_phrases: document.getElementById('typingPhrases')?.value || ''
+  };
+
+  fetch('/admin/api/save-profile/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': getCookieGlobal('csrftoken')
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) showToast('Hero section saved!', 'success');
+    else showToast('Save failed: ' + (data.error || 'unknown'), 'error');
+  })
+  .catch(err => showToast('Save failed: ' + err.message, 'error'));
+}
