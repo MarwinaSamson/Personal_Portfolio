@@ -1,2 +1,1 @@
-
-web: python manage.py migrate && gunicorn portfolio_project.wsgi:application
+web: python manage.py migrate && gunicorn portfolio_project.wsgi:application --timeout 120 --workers 2
