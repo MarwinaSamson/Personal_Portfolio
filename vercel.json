@@ -1,11 +1,8 @@
 {
   "builds": [
     {
-      "src": "portfolio_project/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "10mb"
-      }
+      "src": "api/index.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -19,10 +16,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "portfolio_project/wsgi.py/$1"
+      "dest": "api/index.py"
     }
-  ],
-  "env": {
-    "PYTHONPATH": "portfolio_project"
-  }
+  ]
 }
