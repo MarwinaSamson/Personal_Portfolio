@@ -92,10 +92,7 @@
       {% if profile and profile.profile_image %}
         <img class="avatar-img" src="{{ profile.profile_image.url }}" alt="{{ profile.name }}"/>
       {% else %}
-        <div class="avatar-placeholder">
-          🧑‍💻
-          <small>Add photo</small>
-        </div>
+        <img class="avatar-img" src="{% static 'images/profile.png' %}" alt="Marwina"/>
       {% endif %}
       <div class="hero-card card-tl">
         <div class="hero-card-dot"></div>

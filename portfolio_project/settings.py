@@ -124,7 +124,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-CSRF_TRUSTED_ORIGINS = ['https://marwinasamson.up.railway.app']
+# Vercel deployment detection
+VERCEL = os.environ.get('VERCEL', '0') == '1' or os.path.exists(os.path.join(BASE_DIR, 'api'))
+
+# Update trusted origins for Vercel
+if VERCEL:
+    CSRF_TRUSTED_ORIGINS = ['https://', '.vercel.app']
+else:
+    CSRF_TRUSTED_ORIGINS = ['https://marwinasamson.up.railway.app']
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -132,3 +139,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Vercel-specific settings
+if VERCEL:
+    # For Vercel serverless, we need to handle ALLOWED_HOSTS differently
+    ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']

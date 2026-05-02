@@ -1,0 +1,63 @@
+# Python cache
+
+**pycache**/
+_.pyc
+_.pyo
+\*.pyd
+.Python
+
+# Virtual environments
+
+venv/
+env/
+.venv/
+
+# Environment files
+
+.env
+.env.local
+
+# Database
+
+db.sqlite3
+\*.sqlite3
+
+# Media files (will be served from Cloudinary)
+
+media/
+staticfiles/
+
+# IDE
+
+.idea/
+.vscode/
+_.swp
+_.swo
+
+# Git
+
+.git/
+
+# Logs
+
+\*.log
+
+# OS
+
+.DS_Store
+Thumbs.db
+
+# Testing
+
+.pytest/
+.coverage
+htmlcov/
+
+# Backup files
+
+\*.bak
+backup.sql
+
+# Node (if not using)
+
+node_modules/
